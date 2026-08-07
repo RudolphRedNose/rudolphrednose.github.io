@@ -19,22 +19,28 @@ pracuj.pl (alert e-mail)
         ▼
   Routine (harmonogram) czyta nowe maile z alertami,
   wyciąga oferty, dopasowuje CV wg cv/base-cv.md,
-  tworzy SZKIC (draft) e-maila aplikacyjnego w Gmailu
-  (nic nie jest wysyłane automatycznie),
+  przygotowuje list motywacyjny / notatki pod ofertę
+  (nic nie jest wysyłane ani wklejane automatycznie),
   zapisuje wynik do data/offers.json i commituje do repo
         │
         ▼
    Dashboard (ta strona, GitHub Pages)
-   pokazuje nowe oferty + dopasowanie
+   pokazuje nowe oferty + dopasowanie + gotowy tekst
         │
         ▼
-   Ty klikasz "Akceptuj" → otwierasz gotowy szkic w Gmailu
-   → sam wciskasz "Wyślij"
+   Ty klikasz "Akceptuj", kopiujesz gotowy list motywacyjny
+   i sam aplikujesz na pracuj.pl (przycisk "Aplikuj")
+   — albo, jeśli oferta ma bezpośredni e-mail kontaktowy,
+   dostajesz też gotowy szkic w Gmailu do wysłania.
 ```
 
-Żadna aplikacja nie jest wysyłana bez Twojego kliknięcia w Gmailu — to
-świadomy wybór, żeby nic słabo dopasowanego albo błędnego nie poszło do
-pracodawcy automatycznie.
+**Ważne:** większość ofert na pracuj.pl aplikuje się przez ich własny
+formularz "Aplikuj" (upload CV w ich systemie), nie przez e-mail — dlatego
+dashboard zawsze przygotowuje tekst do skopiowania, a szkic w Gmailu pojawia
+się tylko wtedy, gdy oferta faktycznie podaje kontaktowy adres e-mail. Nic nie
+jest nigdzie wysyłane ani wklejane bez Twojej ręcznej akcji — to świadomy
+wybór, żeby nic słabo dopasowanego albo błędnego nie poszło do pracodawcy
+automatycznie.
 
 ## Setup (jednorazowo)
 

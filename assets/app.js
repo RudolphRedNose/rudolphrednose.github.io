@@ -72,6 +72,13 @@
       ? '<div class="card-notes">' + escapeHtml(offer.match_notes) + "</div>"
       : "";
 
+    var coverLetterHtml = offer.cover_letter
+      ? '<details class="card-notes"><summary>List motywacyjny / notatki do CV (dopasowane)</summary>' +
+        '<pre class="cover-letter" id="cover-' + escapeHtml(offer.id) + '">' + escapeHtml(offer.cover_letter) + "</pre>" +
+        '<button class="btn ghost" data-action="copy" data-id="' + escapeHtml(offer.id) + '">📋 Kopiuj</button>' +
+        "</details>"
+      : "";
+
     var actions = "";
     if (status !== "accepted") {
       actions += '<button class="btn primary" data-action="accept" data-id="' + escapeHtml(offer.id) + '">Akceptuj</button>';
@@ -101,6 +108,7 @@
           '<span class="badge ' + status + '">' + badgeLabel(status) + "</span>" +
         "</div>" +
         notesHtml +
+        coverLetterHtml +
         '<div class="card-meta">' +
           (offer.source_email_date ? "<span>Alert z: " + escapeHtml(offer.source_email_date) + "</span>" : "") +
           (offer.cv_tailored ? "<span>✅ CV dopasowane</span>" : "<span>⏳ CV jeszcze nie dopasowane</span>") +
@@ -150,6 +158,16 @@
       if (action === "accept") setStatus(id, "accepted");
       else if (action === "dismiss") setStatus(id, "dismissed");
       else if (action === "reset") setStatus(id, "new");
+      else if (action === "copy") {
+        var pre = document.getElementById("cover-" + id);
+        if (pre && navigator.clipboard) {
+          navigator.clipboard.writeText(pre.textContent).then(function () {
+            var original = btn.textContent;
+            btn.textContent = "✅ Skopiowano";
+            setTimeout(function () { btn.textContent = original; }, 1500);
+          });
+        }
+      }
       return;
     }
     var tab = e.target.closest(".tab");
