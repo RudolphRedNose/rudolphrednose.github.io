@@ -1,9 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitor ofert pracy — dashboard</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <h1>Monitor ofert pracy</h1>
+    <div class="topbar-meta">
+      <span id="generated-at" class="muted">—</span>
+    </div>
+  </div>
+</header>
 
-<!DOCTYPE html>\
-<html>\
-<body>\
-<h1>Hello World</h1>\
-<p>Bzdury</p>\
-</body>\
-</html>\
-}
+<main class="wrap">
+
+  <section id="setup-banner" class="banner hidden">
+    <strong>Konfiguracja niedokończona.</strong>
+    <span id="setup-banner-text"></span>
+  </section>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-filter="new">Nowe <span class="count" id="count-new">0</span></button>
+    <button class="tab" data-filter="accepted">Zaakceptowane <span class="count" id="count-accepted">0</span></button>
+    <button class="tab" data-filter="dismissed">Odrzucone <span class="count" id="count-dismissed">0</span></button>
+    <button class="tab" data-filter="all">Wszystkie <span class="count" id="count-all">0</span></button>
+  </nav>
+
+  <div id="empty-state" class="empty hidden">
+    <p>Brak ofert do pokazania.</p>
+  </div>
+
+  <div id="offers" class="offers"></div>
+
+</main>
+
+<footer class="foot">
+  <p class="muted">Dane pochodzą z alertów e-mail pracuj.pl, przetwarzanych codziennie. Decyzje o akceptacji/odrzuceniu są zapisywane lokalnie w tej przeglądarce. Wysyłka aplikacji zawsze wymaga Twojego kliknięcia „Wyślij” w gotowym szkicu Gmail.</p>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

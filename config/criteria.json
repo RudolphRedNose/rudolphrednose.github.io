@@ -1,0 +1,13 @@
+{
+  "_readme": "Uzupełnij poniższe pola. Routine czyta ten plik, żeby wiedzieć jakich ofert szukasz i jak je oceniać/dopasowywać CV. Trzymaj się prostych wartości tekstowych — Claude interpretuje je jako wskazówki, nie sztywne filtry.",
+
+  "job_titles": [],
+  "locations": [],
+  "work_mode": [],
+  "min_salary_pln_month_net": null,
+  "seniority": [],
+  "must_have_skills": [],
+  "nice_to_have_skills": [],
+  "dealbreakers": [],
+  "notes": ""
+}
