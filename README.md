@@ -42,28 +42,52 @@ jest nigdzie wysyłane ani wklejane bez Twojej ręcznej akcji — to świadomy
 wybór, żeby nic słabo dopasowanego albo błędnego nie poszło do pracodawcy
 automatycznie.
 
-## Setup (jednorazowo)
+## Setup — stan na 27.08.2026
 
-1. **Załóż alert e-mail na pracuj.pl**
-   Zaloguj się na pracuj.pl → wyszukaj oferty wg swoich kryteriów (stanowisko,
-   lokalizacja, tryb pracy) → włącz "Powiadomienia o pracy" na e-mail dla tego
-   wyszukiwania. Możesz założyć kilka alertów dla różnych zapytań.
+- [x] **CV uzupełnione** — `cv/base-cv.md` (źródło: „Pawel Struminski - AI Filmmaker CV",
+      Google Drive, 05.2026). Numer telefonu celowo pominięty, bo repo jest publiczne.
+- [x] **Kryteria uzupełnione** — `config/criteria.json` (wywiad z 27.08.2026).
+- [ ] **Alert e-mail na pracuj.pl** — JEDYNA rzecz, która blokuje cały pipeline.
+      Instrukcja niżej. Bez tego Routine nie ma czego czytać.
+- [ ] **Scalenie do `master`** — dashboard ożyje pod `https://rudolphrednose.github.io/`.
 
-2. **Uzupełnij swoje CV** w [`cv/base-cv.md`](cv/base-cv.md) — im więcej
-   konkretów (projekty, technologie, liczby, osiągnięcia), tym lepsze
-   dopasowanie do ofert.
+### Twoje kryteria w skrócie
 
-3. **Uzupełnij kryteria** w [`config/criteria.json`](config/criteria.json) —
-   stanowiska, lokalizacje, widełki, must-have/nice-to-have, dealbreakery.
-   Te dane pomagają ocenić, czy oferta faktycznie warta jest dopasowania CV
-   (nie każda oferta z alertu musi być trafna).
+| | |
+|---|---|
+| **Kierunek** | Marketing / e-commerce oparty na wideo **oraz** AI filmmaking |
+| **Lokalizacja** | Zdalnie (cała PL) lub Wrocław (stacjonarnie/hybrydowo) |
+| **Forma** | Wszystko — UoP, B2B, freelance |
+| **Poziom** | Mid / senior / lead / manager |
+| **Widełki** | Bez filtra (wiele ofert ich nie podaje) — zawsze odnotowywane |
+| **Dealbreakery** | Stacjonarnie poza Wrocławiem; agencje/domy mediowe z przeróbką |
+| **Selektywność** | Wysoka — tylko realne trafienia trafiają na dashboard |
 
-4. **Scal tę gałąź do `master`** — GitHub Pages serwuje dashboard z gałęzi
-   domyślnej. Po scaleniu dashboard będzie dostępny pod
-   `https://rudolphrednose.github.io/`.
+### Jak założyć alerty na pracuj.pl (ok. 5 minut)
 
-5. Codzienna Routine jest już skonfigurowana (patrz niżej) i od teraz sama
-   sprawdza skrzynkę raz dziennie.
+Wejdź na pracuj.pl, zaloguj się, wyszukaj wg poniższych fraz i przy każdym
+wyszukiwaniu włącz **„Powiadomienia o pracy"** na e-mail
+(pawel.struminski@gmail.com). Dla każdego wyszukiwania ustaw filtry:
+**praca zdalna** ORAZ osobno **Wrocław** — albo jedno wyszukiwanie z obydwoma,
+jeśli serwis na to pozwala.
+
+Proponowane frazy (załóż 4–6 alertów, nie jeden — węższe alerty łapią lepiej):
+
+1. `AI video` / `generative AI content`
+2. `content marketing manager` + `video`
+3. `e-commerce manager`
+4. `creative director`
+5. `video producer` / `montażysta` / `DaVinci Resolve`
+6. `social media manager` + `TikTok`
+
+Nie mogę tego kliknąć za Ciebie — pracuj.pl blokuje automatyczny dostęp
+(Cloudflare), a ta sesja działa w kontenerze w chmurze, nie na Twoim
+komputerze. Nie zweryfikowałem też dokładnych parametrów URL wyszukiwarki
+z tego samego powodu, więc podaję frazy, a nie gotowe linki.
+
+Gdy pierwszy alert dojdzie na skrzynkę, codzienna Routine (6:00 UTC) sama go
+przetworzy: wyciągnie oferty, oceni dopasowanie do `config/criteria.json`,
+napisze list motywacyjny na bazie `cv/base-cv.md` i wrzuci wszystko na dashboard.
 
 ## Dashboard
 
@@ -96,8 +120,8 @@ index.html            dashboard (statyczny, GitHub Pages)
 assets/app.js          logika dashboardu
 assets/style.css        wygląd
 data/offers.json        lista ofert + dopasowania (generowane przez Routine)
-cv/base-cv.md            Twoje bazowe CV (Ty uzupełniasz)
-config/criteria.json     kryteria wyszukiwania/oceny (Ty uzupełniasz)
+cv/base-cv.md            bazowe CV Pawła (uzupełnione 27.08.2026)
+config/criteria.json     kryteria wyszukiwania/oceny (uzupełnione 27.08.2026)
 ```
 
 ## Ręczne uruchomienie
