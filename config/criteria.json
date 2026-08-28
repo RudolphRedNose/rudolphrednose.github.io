@@ -1,0 +1,68 @@
+{
+  "_readme": "Kryteria wyszukiwania i oceny ofert dla Pawła Strumińskiego. Czytane przez codzienną Routine przy ocenie dopasowania oferty i pisaniu listu motywacyjnego. Uzupełniane wspólnie 27.08.2026.",
+  "job_titles": [
+    "AI Filmmaker",
+    "AI Video Specialist",
+    "Generative AI Content Creator",
+    "Creative Director",
+    "Content Marketing Manager",
+    "E-commerce Manager",
+    "Performance Marketing Specialist",
+    "Social Media / Video Content Manager",
+    "Brand Content Lead",
+    "Video Producer"
+  ],
+  "focus_areas": [
+    "marketing i e-commerce oparte na treści wideo",
+    "produkcja wideo z wykorzystaniem generatywnego AI"
+  ],
+  "locations": [
+    "zdalnie (cała Polska)",
+    "Wrocław (stacjonarnie lub hybrydowo)"
+  ],
+  "work_mode": [
+    "remote",
+    "hybrid",
+    "onsite (tylko Wrocław)",
+    "remote + wyjazdy na plany zdjęciowe/produkcje"
+  ],
+  "employment_types": [
+    "umowa o pracę",
+    "B2B",
+    "zlecenie / freelance / projekt"
+  ],
+  "_employment_note": "Paweł chce widzieć pełen obraz rynku — nie filtruj po formie zatrudnienia, pokazuj wszystko i odnotuj formę w match_notes.",
+  "min_salary_pln_month_net": null,
+  "_salary_note": "Paweł świadomie NIE filtruje po widełkach — wiele ofert na pracuj.pl ich nie podaje, a filtr by je wyciął. Zawsze odnotuj widełki (lub ich brak) w match_notes, żeby mógł ocenić sam.",
+  "seniority": [
+    "mid",
+    "senior",
+    "lead",
+    "manager"
+  ],
+  "_seniority_note": "8+ lat doświadczenia, 2x Złoty Kopernik, MA reżyseria + MA aktorstwo. Oferty juniorskie odrzucaj, chyba że wyjątkowo mocna marka lub wyraźnie wyższe widełki.",
+  "must_have_skills": [],
+  "strong_signals": [
+    "generatywne AI w produkcji wideo (Runway, Veo, Kling, Luma, MidJourney)",
+    "DaVinci Resolve / color grading / montaż",
+    "TikTok i Meta Ads — kreacje wideo",
+    "storytelling, StoryBrand, marketing narracyjny",
+    "e-commerce, konwersja, performance",
+    "samodzielność i wpływ na kierunek kreatywny",
+    "rynki międzynarodowe / język angielski w pracy"
+  ],
+  "nice_to_have_skills": [
+    "Unreal Engine / wirtualna produkcja",
+    "After Effects / motion design",
+    "praca z aktorem, casting, reżyseria na planie",
+    "edukacja / e-learning wideo",
+    "branża suplementów, zdrowia, lifestyle"
+  ],
+  "dealbreakers": [
+    "praca wyłącznie stacjonarna poza Wrocławiem (bez opcji zdalnej/hybrydowej)",
+    "agencje reklamowe i domy mediowe znane z przeróbki i nadgodzin"
+  ],
+  "notes": "Kandydat: aktor i reżyser z dyplomem Akademii Teatralnej, który przeszedł w stronę AI filmmakingu i marketingu e-commerce. Najmocniejsza karta to połączenie klasycznego warsztatu filmowego z biegłością w narzędziach generatywnego AI — szukaj ofert, które doceniają OBIE te rzeczy naraz, nie tylko jedną. Angielski C1, niemiecki komunikatywny.",
+  "selectivity": "high",
+  "_selectivity_note": "Filtruj selektywnie: do data/offers.json trafiają TYLKO oferty realnie pasujące do profilu (kierunek: marketing/e-commerce content-driven ORAZ AI filmmaking; lokalizacja: zdalnie lub Wrocław; poziom mid/senior/lead). Ofertę wyraźnie niepasującą pomiń całkowicie zamiast dodawać ją z niską oceną. W razie wątpliwości — dodaj i zaznacz wątpliwość w match_notes."
+}
