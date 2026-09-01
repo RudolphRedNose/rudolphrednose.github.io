@@ -42,14 +42,14 @@ jest nigdzie wysyłane ani wklejane bez Twojej ręcznej akcji — to świadomy
 wybór, żeby nic słabo dopasowanego albo błędnego nie poszło do pracodawcy
 automatycznie.
 
-## Setup — stan na 27.08.2026
+## Setup — stan na 01.09.2026
 
 - [x] **CV uzupełnione** — `cv/base-cv.md` (źródło: „Pawel Struminski - AI Filmmaker CV",
       Google Drive, 05.2026). Numer telefonu celowo pominięty, bo repo jest publiczne.
 - [x] **Kryteria uzupełnione** — `config/criteria.json` (wywiad z 27.08.2026).
 - [ ] **Alert e-mail na pracuj.pl** — JEDYNA rzecz, która blokuje cały pipeline.
       Instrukcja niżej. Bez tego Routine nie ma czego czytać.
-- [ ] **Scalenie do `master`** — dashboard ożyje pod `https://rudolphrednose.github.io/`.
+- [x] **Scalone do `master`** — dashboard żyje pod https://rudolphrednose.github.io/
 
 ### Twoje kryteria w skrócie
 
@@ -122,7 +122,21 @@ assets/style.css        wygląd
 data/offers.json        lista ofert + dopasowania (generowane przez Routine)
 cv/base-cv.md            bazowe CV Pawła (uzupełnione 27.08.2026)
 config/criteria.json     kryteria wyszukiwania/oceny (uzupełnione 27.08.2026)
+docs/lokalna-sesja.md     setup lokalnej sesji z przeglądarką + prompt
 ```
+
+## Druga droga: lokalna sesja z przeglądarką
+
+Alerty e-mail mają wadę — widzisz tylko to, co pracuj.pl raczy przysłać.
+Alternatywa: uruchom Claude Code **lokalnie na Macu**, wtedy sesja może
+przeglądać pracuj.pl bezpośrednio w Twojej zalogowanej przeglądarce (prawdziwe
+IP, prawdziwa sesja — Cloudflare nie stanowi problemu) i uzupełniać
+`data/offers.json` sama, bez czekania na maile.
+
+Instrukcja setupu i gotowy prompt do wklejenia: **[`docs/lokalna-sesja.md`](docs/lokalna-sesja.md)**
+
+Obie drogi mogą działać równolegle — piszą do tego samego pliku i deduplikują
+oferty po `url`.
 
 ## Ręczne uruchomienie
 

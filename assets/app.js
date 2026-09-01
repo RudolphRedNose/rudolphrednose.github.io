@@ -110,7 +110,7 @@
         notesHtml +
         coverLetterHtml +
         '<div class="card-meta">' +
-          (offer.source_email_date ? "<span>Alert z: " + escapeHtml(offer.source_email_date) + "</span>" : "") +
+          (offer.source_email_date ? "<span>Znaleziono: " + escapeHtml(offer.source_email_date) + "</span>" : "") +
           (offer.cv_tailored ? "<span>✅ CV dopasowane</span>" : "<span>⏳ CV jeszcze nie dopasowane</span>") +
         "</div>" +
         '<div class="card-actions">' + actions + "</div>" +
