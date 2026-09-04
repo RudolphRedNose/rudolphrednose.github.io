@@ -2,7 +2,12 @@
 
 Ten dokument opisuje, jak uruchomić Claude Code **na własnym Macu**, żeby
 przeglądał pracuj.pl bezpośrednio w Twojej zalogowanej przeglądarce i uzupełniał
-to repo — zamiast czekać na alerty e-mail.
+to repo.
+
+**To jest teraz główna (i jedyna aktywna) ścieżka.** Codzienna Routine w chmurze,
+która czytała alerty e-mail z Gmaila, została wyłączona 04.09.2026 — przez trzy
+tygodnie nie miała czego przetwarzać, bo alerty na pracuj.pl nie zostały
+założone, a produkowała pusty commit dziennie.
 
 ## Dlaczego to działa, skoro zdalna sesja nie dawała rady
 
@@ -134,8 +139,8 @@ nie podaje — nie wymyślaj wartości.
    Żadnych ogólników, żadnych zmyślonych osiągnięć.
 8. Zaktualizuj `generated_at` na aktualny czas UTC (ISO 8601).
 9. `git pull --rebase origin master`, potem commit i push na `master`.
-   Uwaga: zdalna sesja też codziennie commituje ten plik, więc rebase przed
-   pushem jest obowiązkowy.
+   Rebase przed pushem to i tak dobra higiena — repo bywa aktualizowane
+   z innych miejsc.
 
 ### Czego NIE robić
 

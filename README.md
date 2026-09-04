@@ -1,55 +1,60 @@
 # Monitor ofert pracy (pracuj.pl) — dashboard do codziennej akceptacji
 
-Aplikacja, która pilnuje nowych ofert pracy na pracuj.pl, dopasowuje pod nie
-Twoje CV i przygotowuje gotowy e-mail aplikacyjny — a Ty codziennie w jednym
-miejscu akceptujesz albo odrzucasz każdą propozycję.
+Aplikacja, która przegląda oferty pracy na pracuj.pl, ocenia je pod kątem
+Twojego CV i przygotowuje dopasowany list motywacyjny — a Ty w jednym miejscu
+akceptujesz albo odrzucasz każdą propozycję.
 
 ## Jak to działa
 
-pracuj.pl blokuje automatyczne scrapowanie strony (ochrona Cloudflare), więc
-zamiast "podglądać" serwis od zewnątrz, aplikacja korzysta z jego **własnej,
-legalnej funkcji powiadomień e-mail** ("Powiadomienia o pracy" / job alerts):
+pracuj.pl blokuje automatyczne scrapowanie (ochrona Cloudflare) — strona
+wyszukiwania, API i nawet `robots.txt` zwracają 403 z wyzwaniem „Just a
+moment...". Sesja w chmurze nie ma szans przez to przejść.
+
+Rozwiązaniem jest **lokalna sesja Claude Code na komputerze Pawła**: prawdziwa
+przeglądarka, prawdziwe IP, zalogowana sesja. Z punktu widzenia serwisu to po
+prostu on przegląda oferty — bo faktycznie on.
 
 ```
-pracuj.pl (alert e-mail)
+Claude Code lokalnie (Twój Mac)
+        │  steruje Twoim Chrome przez Playwright
+        ▼
+   pracuj.pl — wyszukiwanie wg config/criteria.json
         │
         ▼
-   Twoja skrzynka Gmail
-        │  codziennie rano, automatycznie
-        ▼
-  Routine (harmonogram) czyta nowe maile z alertami,
-  wyciąga oferty, dopasowuje CV wg cv/base-cv.md,
-  przygotowuje list motywacyjny / notatki pod ofertę
-  (nic nie jest wysyłane ani wklejane automatycznie),
-  zapisuje wynik do data/offers.json i commituje do repo
+   ocena dopasowania do cv/base-cv.md
+   + list motywacyjny pod konkretną ofertę
         │
         ▼
-   Dashboard (ta strona, GitHub Pages)
-   pokazuje nowe oferty + dopasowanie + gotowy tekst
+   data/offers.json  →  commit  →  GitHub Pages
         │
         ▼
-   Ty klikasz "Akceptuj", kopiujesz gotowy list motywacyjny
-   i sam aplikujesz na pracuj.pl (przycisk "Aplikuj")
-   — albo, jeśli oferta ma bezpośredni e-mail kontaktowy,
-   dostajesz też gotowy szkic w Gmailu do wysłania.
+   Dashboard: przeglądasz, akceptujesz, kopiujesz list
+   i sam klikasz „Aplikuj" na pracuj.pl
 ```
 
-**Ważne:** większość ofert na pracuj.pl aplikuje się przez ich własny
-formularz "Aplikuj" (upload CV w ich systemie), nie przez e-mail — dlatego
-dashboard zawsze przygotowuje tekst do skopiowania, a szkic w Gmailu pojawia
-się tylko wtedy, gdy oferta faktycznie podaje kontaktowy adres e-mail. Nic nie
-jest nigdzie wysyłane ani wklejane bez Twojej ręcznej akcji — to świadomy
-wybór, żeby nic słabo dopasowanego albo błędnego nie poszło do pracodawcy
-automatycznie.
+Setup i gotowy prompt: **[`docs/lokalna-sesja.md`](docs/lokalna-sesja.md)**
 
-## Setup — stan na 01.09.2026
+**Wysyłka aplikacji jest zawsze ręczna.** System przygotowuje dopasowany tekst,
+decyzję i kliknięcie „Aplikuj" zostawia Tobie — żeby nic słabo dopasowanego nie
+poszło do pracodawcy automatycznie.
+
+### Ścieżka e-mailowa (wyłączona)
+
+Wcześniej działała codzienna Routine w chmurze, która czytała z Gmaila alerty
+„Powiadomienia o pracy" z pracuj.pl. **Wyłączona 04.09.2026** — alerty nie
+zostały założone, więc przez trzy tygodnie produkowała tylko pusty commit
+dziennie. Routine jest zachowana i da się ją włączyć z powrotem, gdybyś kiedyś
+te alerty założył; wtedy oba źródła działałyby równolegle, deduplikując oferty
+po `url`.
+
+## Setup — stan na 04.09.2026
 
 - [x] **CV uzupełnione** — `cv/base-cv.md` (źródło: „Pawel Struminski - AI Filmmaker CV",
       Google Drive, 05.2026). Numer telefonu celowo pominięty, bo repo jest publiczne.
 - [x] **Kryteria uzupełnione** — `config/criteria.json` (wywiad z 27.08.2026).
-- [ ] **Alert e-mail na pracuj.pl** — JEDYNA rzecz, która blokuje cały pipeline.
-      Instrukcja niżej. Bez tego Routine nie ma czego czytać.
 - [x] **Scalone do `master`** — dashboard żyje pod https://rudolphrednose.github.io/
+- [ ] **Uruchomienie lokalnej sesji** — patrz [`docs/lokalna-sesja.md`](docs/lokalna-sesja.md).
+      To jedyna rzecz, która została.
 
 ### Twoje kryteria w skrócie
 
@@ -63,55 +68,29 @@ automatycznie.
 | **Dealbreakery** | Stacjonarnie poza Wrocławiem; agencje/domy mediowe z przeróbką |
 | **Selektywność** | Wysoka — tylko realne trafienia trafiają na dashboard |
 
-### Jak założyć alerty na pracuj.pl (ok. 5 minut)
-
-Wejdź na pracuj.pl, zaloguj się, wyszukaj wg poniższych fraz i przy każdym
-wyszukiwaniu włącz **„Powiadomienia o pracy"** na e-mail
-(pawel.struminski@gmail.com). Dla każdego wyszukiwania ustaw filtry:
-**praca zdalna** ORAZ osobno **Wrocław** — albo jedno wyszukiwanie z obydwoma,
-jeśli serwis na to pozwala.
-
-Proponowane frazy (załóż 4–6 alertów, nie jeden — węższe alerty łapią lepiej):
-
-1. `AI video` / `generative AI content`
-2. `content marketing manager` + `video`
-3. `e-commerce manager`
-4. `creative director`
-5. `video producer` / `montażysta` / `DaVinci Resolve`
-6. `social media manager` + `TikTok`
-
-Nie mogę tego kliknąć za Ciebie — pracuj.pl blokuje automatyczny dostęp
-(Cloudflare), a ta sesja działa w kontenerze w chmurze, nie na Twoim
-komputerze. Nie zweryfikowałem też dokładnych parametrów URL wyszukiwarki
-z tego samego powodu, więc podaję frazy, a nie gotowe linki.
-
-Gdy pierwszy alert dojdzie na skrzynkę, codzienna Routine (6:00 UTC) sama go
-przetworzy: wyciągnie oferty, oceni dopasowanie do `config/criteria.json`,
-napisze list motywacyjny na bazie `cv/base-cv.md` i wrzuci wszystko na dashboard.
-
 ## Dashboard
 
 - **Nowe** — oferty czekające na Twoją decyzję.
-- **Zaakceptowane** — otwórz gotowy szkic w Gmailu i wyślij go samodzielnie.
+- **Zaakceptowane** — skopiuj gotowy list motywacyjny i zaaplikuj na pracuj.pl.
 - **Odrzucone** — oferty, które pominąłeś.
 - **Wszystkie** — pełna lista.
 
-Status "Akceptuj/Odrzuć/Cofnij" zapisuje się **lokalnie w przeglądarce**
+Każda karta ma rozwijany blok z listem motywacyjnym i przyciskiem „Kopiuj".
+
+Status „Akceptuj/Odrzuć/Cofnij" zapisuje się **lokalnie w przeglądarce**
 (localStorage) — to prosty dashboard bez backendu, więc decyzje nie
-synchronizują się między urządzeniami/przeglądarkami. Sama lista ofert i
-dopasowania (`data/offers.json`) jest wspólna dla wszystkich, bo aktualizuje
-ją Routine i commituje do repo.
+synchronizują się między urządzeniami. Sama lista ofert (`data/offers.json`)
+jest wspólna, bo commituje ją do repo lokalna sesja.
 
 ## Ograniczenia, o których warto wiedzieć
 
-- Aplikacja widzi tylko te oferty, które pracuj.pl sam wyśle w ramach alertu
-  — to nie jest pełny, niezależny skan wszystkich ofert w serwisie, tylko
-  tyle, ile złapie mechanizm alertów pracuj.pl dla podanych kryteriów.
-- Alerty pracuj.pl mają własny harmonogram wysyłki (zwykle godzinowy/dzienny)
-  — nie ma tu opóźnienia z naszej strony, ale zależymy od ich częstotliwości.
-- Dopasowanie CV i ocena trafności oferty to praca Claude na podstawie treści
-  maila i Twojego `cv/base-cv.md` — zawsze przejrzyj szkic przed wysłaniem.
-- Wysyłka jest zawsze ręczna (świadomie) — patrz sekcja wyżej.
+- Dashboard aktualizuje się tylko wtedy, gdy uruchomisz lokalną sesję — nie ma
+  już nic, co robi to samo w tle.
+- Ocena dopasowania i treść listu motywacyjnego są generowane automatycznie
+  na podstawie `cv/base-cv.md` — przejrzyj je przed użyciem.
+- Status „Akceptuj/Odrzuć" siedzi w `localStorage` przeglądarki, więc nie
+  synchronizuje się między urządzeniami.
+- Wysyłka aplikacji jest zawsze ręczna (świadomie).
 
 ## Struktura repo
 
@@ -119,27 +98,14 @@ ją Routine i commituje do repo.
 index.html            dashboard (statyczny, GitHub Pages)
 assets/app.js          logika dashboardu
 assets/style.css        wygląd
-data/offers.json        lista ofert + dopasowania (generowane przez Routine)
+data/offers.json        lista ofert + dopasowania (pisane przez lokalną sesję)
 cv/base-cv.md            bazowe CV Pawła (uzupełnione 27.08.2026)
 config/criteria.json     kryteria wyszukiwania/oceny (uzupełnione 27.08.2026)
 docs/lokalna-sesja.md     setup lokalnej sesji z przeglądarką + prompt
 ```
 
-## Druga droga: lokalna sesja z przeglądarką
+## Uruchomienie
 
-Alerty e-mail mają wadę — widzisz tylko to, co pracuj.pl raczy przysłać.
-Alternatywa: uruchom Claude Code **lokalnie na Macu**, wtedy sesja może
-przeglądać pracuj.pl bezpośrednio w Twojej zalogowanej przeglądarce (prawdziwe
-IP, prawdziwa sesja — Cloudflare nie stanowi problemu) i uzupełniać
-`data/offers.json` sama, bez czekania na maile.
-
-Instrukcja setupu i gotowy prompt do wklejenia: **[`docs/lokalna-sesja.md`](docs/lokalna-sesja.md)**
-
-Obie drogi mogą działać równolegle — piszą do tego samego pliku i deduplikują
-oferty po `url`.
-
-## Ręczne uruchomienie
-
-Jeśli nie chcesz czekać na codzienny harmonogram, możesz poprosić Claude o
-"sprawdź teraz nowe oferty z pracuj.pl" w dowolnej chwili — logika jest ta
-sama, co w Routine.
+Odpal Claude Code lokalnie w tym repo i wklej prompt z
+[`docs/lokalna-sesja.md`](docs/lokalna-sesja.md). Rób to, kiedy chcesz sprawdzić
+rynek — nie ma harmonogramu, decydujesz sam.
