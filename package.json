@@ -1,0 +1,29 @@
+{
+  "name": "pracuj-monitor",
+  "version": "1.0.0",
+  "description": "Dashboard monitorowania ofert pracy z pracuj.pl — lokalna sesja steruje prawdziwym Chrome, ocenia oferty pod kątem CV i przygotowuje listy motywacyjne do akceptacji.",
+  "main": "scripts/browse.mjs",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "browse": "node scripts/browse.mjs",
+    "browse:open": "node scripts/browse.mjs open",
+    "browse:status": "node scripts/browse.mjs status"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RudolphRedNose/rudolphrednose.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/RudolphRedNose/rudolphrednose.github.io/issues"
+  },
+  "homepage": "https://github.com/RudolphRedNose/rudolphrednose.github.io#readme",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}
