@@ -101,11 +101,15 @@ assets/style.css        wygląd
 data/offers.json        lista ofert + dopasowania (pisane przez lokalną sesję)
 cv/base-cv.md            bazowe CV Pawła (uzupełnione 27.08.2026)
 config/criteria.json     kryteria wyszukiwania/oceny (uzupełnione 27.08.2026)
-docs/lokalna-sesja.md     setup lokalnej sesji z przeglądarką + prompt
+docs/lokalna-sesja.md     setup lokalnej sesji z przeglądarką
+docs/prompt-startowy.md   prompt do wklejenia w lokalną sesję (gotowy do skopiowania)
 ```
 
 ## Uruchomienie
 
-Odpal Claude Code lokalnie w tym repo i wklej prompt z
-[`docs/lokalna-sesja.md`](docs/lokalna-sesja.md). Rób to, kiedy chcesz sprawdzić
-rynek — nie ma harmonogramu, decydujesz sam.
+Odpal Claude Code lokalnie w tym repo (`claude`) i wklej prompt z
+[`docs/prompt-startowy.md`](docs/prompt-startowy.md). Rób to, kiedy chcesz
+sprawdzić rynek — nie ma harmonogramu, decydujesz sam.
+
+Setup od zera (klon + Playwright) opisuje
+[`docs/lokalna-sesja.md`](docs/lokalna-sesja.md).
