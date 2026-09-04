@@ -1,0 +1,13 @@
+# Zaleznosci Node (Playwright do sterowania przegladarka w lokalnej sesji)
+node_modules/
+package-lock.json
+
+# Profil przegladarki uzywany przez Playwright — zawiera ciasteczka i dane logowania.
+# NIGDY nie commitowac: repo jest publiczne.
+.browser-profile/
+chrome-profile/
+user-data-dir/
+
+# Systemowe
+.DS_Store
+*.log
